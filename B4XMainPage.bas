@@ -115,5 +115,7 @@ End Sub
 Private Sub btnSave_Click
 	If txtResponse.Text.Length = 0 Then Return
 	Dim timestamp As String = DateTime.Date(DateTime.Now)
-	File.WriteString(File.DirApp, $"response_${timestamp}.txt"$, txtResponse.Text)
+	Dim content As String = $"Prompt: ${CRLF}${txtPrompt.Text}${CRLF}${CRLF}Response: ${CRLF}${txtResponse.Text}"$
+	File.WriteString(File.DirApp, $"response_${timestamp}.txt"$, content)
+	xui.MsgboxAsync($"Response saved to response_${timestamp}.txt"$, "")
 End Sub
